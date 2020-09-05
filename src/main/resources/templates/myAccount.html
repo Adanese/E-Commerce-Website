@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org//xhtml">
+<xsl:output method="xml" indent="yes" />
+<head th:replace="common/header :: common-header" />
+<br></br>
+<body>
+	<!-- NavBar -->
+
+	<div th:replace="/common/header :: navbar"></div>
+	<!-- container -->
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-8">
+				<h2 class="selection-headline">
+					<span> User Account </span>
+				</h2>
+			</div>
+			<div class="col-4"></div>
+		</div>
+		<hr></hr>
+	</div>
+	<div>
+
+		<div class="container"></div>
+		<img class="img-responsive" src="css/myAccount_02.png"
+			style="margin-top: -600" />
+		<div class="container">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col style=margin-top:-150">
+					<!-- # Tabs Create ACcount, Forget Pass, Login -->
+
+
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item"><a class="nav-link active" id="home-tab"
+							data-toggle="tab" href="#home" role="tab" aria-controls="home"
+							aria-selected="true">Create Account</a></li>
+						<li class="nav-item"><a class="nav-link" id="profile-tab"
+							data-toggle="tab" href="#profile" role="tab"
+							aria-controls="profile" aria-selected="false">Login</a></li>
+						<li class="nav-item"><a class="nav-link" id="contact-tab"
+							data-toggle="tab" href="#contact" role="tab"
+							aria-controls="contact" aria-selected="false">Forget Password</a></li>
+					</ul>
+
+					<!-- Create New Account -->
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade" id="home" role="tabpanel"
+							aria-labelledby="home-tab">
+							<!-- Form of Create New Account -->
+							<form>
+
+								<div class="form-group">
+									<label for="exampleInputPassword1">Username</label> <input
+										type="text" class="form-control" id="exampleInputPassword1"
+										placeholder="Enter Username" />
+								</div>
+
+								<div class="form-group">
+									<label for="exampleInputEmail1">Email address</label> <input
+										type="email" class="form-control" id="exampleInputEmail1"
+										aria-describedby="emailHelp" placeholder="Enter email" /> <small
+										id="emailHelp" class="form-text text-muted">We'll
+										Enter your email here.</small>
+								</div>
+
+								<button type="submit" class="btn btn-primary">Create
+									Account</button>
+							</form>
+						</div>
+
+
+
+
+						<!-- Login -->
+							<div class="tab-pane fade" id="profile" role="tabpanel"  
+								aria-labelledby="profile-tab"  th:classappend="${classActiveLogin}? 'show active'">
+								<!-- Login of the second tab -->
+								<form>
+									<div class="form-group">
+										<label for="exampleInputEmail1">Email address</label> <input
+											type="email" class="form-control" id="exampleInputEmail1"
+											aria-describedby="emailHelp" placeholder="Enter email" /> <small
+											id="emailHelp" class="form-text text-muted">We'll
+											Enter your email here.</small>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">Password</label> <input
+											type="password" class="form-control"
+											id="exampleInputPassword1" placeholder="Password" />
+									</div>
+
+									<button type="submit" class="btn btn-primary">Create
+										Account</button>
+								</form>
+
+
+							</div>
+
+							<!-- Forget Password     -->
+							<div class="tab-pane fade" id="contact" role="tabpanel"
+								aria-labelledby="contact-tab"  th:classappend="${classActiveForgetPassword}? 'show active'">...</div>
+					</div>
+
+
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<!-- end of container -->
+</body>
+
+<!-- script -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</html>
+
+
+
+
+
+
+
