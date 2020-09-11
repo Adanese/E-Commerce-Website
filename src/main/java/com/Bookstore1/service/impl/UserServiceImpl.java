@@ -1,11 +1,14 @@
 package com.Bookstore1.service.impl;
 
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Bookstore1.domain.User;
 import com.Bookstore1.domain.security.PasswordResetToken;
+import com.Bookstore1.domain.security.UserRole;
 import com.Bookstore1.repository.PasswordResetTokenRepository;
 import com.Bookstore1.repository.UserRepository;
 import com.Bookstore1.service.UserService;
@@ -37,6 +40,12 @@ public class UserServiceImpl implements UserService{
 	
 	public User findByEmail (String email) {
 		return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public void createUser(User user, Set<UserRole> userRoles) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

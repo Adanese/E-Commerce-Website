@@ -1,8 +1,11 @@
 package com.Bookstore1.service;
 
 
+import java.util.Set;
+
 import com.Bookstore1.domain.User;
 import com.Bookstore1.domain.security.PasswordResetToken;
+import com.Bookstore1.domain.security.UserRole;
 
 public interface UserService {
 PasswordResetToken getPasswordResetToken(final String token);
@@ -12,5 +15,7 @@ PasswordResetToken getPasswordResetToken(final String token);
 	User findByUsername(String username);
 	
 	User findByEmail (String email);
+
+	void createUser(User user, Set<UserRole> userRoles);
 	
 }
