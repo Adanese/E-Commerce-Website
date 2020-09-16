@@ -3,10 +3,13 @@ package com.Bookstore1.controller;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,10 +27,17 @@ import com.Bookstore1.domain.security.Role;
 import com.Bookstore1.domain.security.UserRole;
 import com.Bookstore1.service.UserService;
 import com.Bookstore1.service.impl.UserSecurityService;
+import com.Bookstore1.utility.MailConstructor;
 import com.Bookstore1.utility.SecurityUtility;
 
 @Controller
 public class HomeController {
+
+	@Autowired
+	private JavaMailSender mailSender;
+
+	@Autowired
+	private MailConstructor mailConstructor;
 
 	@Autowired
 	private UserService userService;
@@ -48,6 +58,7 @@ public class HomeController {
 
 	@RequestMapping("/forgetPassword")
 	public String forgetPassword(Model model) {
+
 		model.addAttribute("classActiveForgetPassword", true);
 		return "myAccount";
 	}
@@ -87,6 +98,21 @@ public class HomeController {
 		userRoles.add(new UserRole(user, role));
 		userService.createUser(user, userRoles);
 
+		String token = UUID.randomUUID().toString();
+		userService.createPasswordResetTokenForUser(user, token);
+
+		String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+
+		SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user,
+				password);
+
+		mailSender.send(email);
+		mailSender.send(email);
+		mailSender.send("email");
+		model.addAttribute("emailSent", "true");
+
+		return "myAccount";
+
 	}
 
 	@RequestMapping("/newUser")
@@ -113,4 +139,5 @@ public class HomeController {
 		return "myProfile";
 	}
 }
- 
+
+// HomeCOntroller
